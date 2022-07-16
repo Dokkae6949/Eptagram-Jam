@@ -4,14 +4,12 @@ using Game.WeaponSystem;
 namespace Game.Enemies
 {
     [RequireComponent(typeof(Rigidbody), typeof(Weapon))]
-    public class EnemyBrainSniper : MonoBehaviour
+    public class EnemyBrainMeele : MonoBehaviour
     {
         [SerializeField] private SOEnemyBrain _brainData;
 
         [Tooltip("Keeping this empty will result in the player being auto selected")]
         [SerializeField] private Transform _target;
-
-        [SerializeField] private LineRenderer _lineRenderer;
 
         private Weapon _weapon;
         private Rigidbody _rigidbody;
@@ -24,6 +22,15 @@ namespace Game.Enemies
 
             _rigidbody = GetComponent<Rigidbody>();
             _weapon = GetComponent<Weapon>();
+        }
+        private void Update()
+        {
+            UpdateMovementInput();
+            UpdateShooting();
+        }
+        private void FixedUpdate()
+        {
+            UpdateForce();
         }
 
         public void UpdateMovementInput()
@@ -46,9 +53,7 @@ namespace Game.Enemies
             if (_weapon == null) return;
 
             if (DistanceToTargetSqr() <= _weapon.GetMaxBulletRange() * _weapon.GetMaxBulletRange())
-            {
                 _weapon.StartShooting();
-            }
             else _weapon.StopShooting();
         }
 
