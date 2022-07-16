@@ -77,11 +77,10 @@ namespace Game.Player
         {
             if (!cameraAnchor) return;
 
-            transform.Rotate(Vector3.up * _mouseInput.x * Time.deltaTime);
-
             xRotationThing -= _mouseInput.y * Time.deltaTime;
             xRotationThing = Mathf.Clamp(xRotationThing, -90, 90);
             cameraAnchor.localRotation = Quaternion.Euler(xRotationThing, 0f, 0f);
+            transform.Rotate(Vector3.up * _mouseInput.x * Time.deltaTime);
         }
         private void UpdateWeapon()
         {
