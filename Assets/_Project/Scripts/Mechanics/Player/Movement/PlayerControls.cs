@@ -3,6 +3,7 @@ using Game.WeaponSystem;
 
 namespace Game.Player
 {
+    [RequireComponent(typeof(Rigidbody))]
     public class PlayerControls : MonoBehaviour
     {
         [Header("General")]
@@ -38,7 +39,7 @@ namespace Game.Player
         private Weapon _weapon;
         private Vector2 _movementInput;
         private Vector2 _mouseInput;
-        private float xRotationThing; // (° _°)
+        private float xRotationThing = 0f;// (° _°)
 
 
         private void Start()
