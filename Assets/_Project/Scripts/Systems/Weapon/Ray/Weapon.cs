@@ -107,7 +107,7 @@ namespace Game.WeaponSystem
             if (time > 1000000) time = 0f;
             time += Time.deltaTime;
         }
-        private void Shoot()
+        public void Shoot()
         {
             // Play Audio Source for shot???
 

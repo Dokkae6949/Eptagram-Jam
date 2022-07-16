@@ -8,5 +8,6 @@ namespace Game.Enemies
     public class SOEnemyBrain : ScriptableObject
     {
         public float movementSpeed;
+        public float attackChargeupTime;
     }
 }
