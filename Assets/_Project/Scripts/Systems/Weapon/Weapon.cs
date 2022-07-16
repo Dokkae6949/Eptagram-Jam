@@ -2,19 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Game.WeaponSysten
+namespace Game.WeaponSystem
 {
     public class Weapon : MonoBehaviour
     {
         [SerializeField] private Transform _origin;
         [SerializeField] private LayerMask _damageableLayer;
+        [SerializeField] private SOWeapon _weaponData;
 
         [SerializeField] private int _damage;
         public void SetDamage(int value)
         {
             if (value > 0) _damage = value;
         }
-        
+
         [SerializeField] private int _damageMultiplier = 1;
         public void SetDamageMultiplier(int value)
         {
@@ -55,12 +56,33 @@ namespace Game.WeaponSysten
         {
             _isShooting = false;
         }
-
+        
         private float time;
         private float lastShot;
 
 
+        private void Start()
+        {
+            CopySOData();
+        }
         private void Update()
+        {
+            ShootingHandler();
+        }
+
+
+        public void CopySOData()
+        {
+            if (_weaponData == null) return;
+
+            _damage = _weaponData.damage;
+            _damageMultiplier = _weaponData.damageMultiplier;
+            _shotsPerSecond = _weaponData.shotsPerSecond;
+            _bulletSpray = _weaponData.bulletSpray;
+            _maxBulletRange = _weaponData.maxBulletRange;
+            _bulletsPerShot = _weaponData.bulletsPerShot;
+        }
+        private void ShootingHandler()
         {
             bool isCooldownOver = (time - lastShot) > (1f / _shotsPerSecond) ? true : false;
 
@@ -77,8 +99,6 @@ namespace Game.WeaponSysten
             if (time > 1000000) time = 0f;
             time += Time.deltaTime;
         }
-
-
         private void Shoot()
         {
             Vector3 spray = new Vector3(

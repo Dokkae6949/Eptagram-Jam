@@ -1,5 +1,5 @@
 using UnityEngine;
-using Game.WeaponSysten;
+using Game.WeaponSystem;
 
 namespace Game.Player
 {
