@@ -10,37 +10,41 @@ namespace Game.WeaponSystem
         [SerializeField] private LayerMask _damageableLayer;
         [SerializeField] private SOWeapon _weaponData;
 
-        [SerializeField] private int _damage;
+        [SerializeField][Range(0, 1000)] private int _damage;
         public void SetDamage(int value)
         {
-            if (value > 0) _damage = value;
+            _damage = Mathf.Clamp(value, 0, 1000);
         }
 
-        [SerializeField] private int _damageMultiplier = 1;
+        [SerializeField][Range(1, 200)] private int _damageMultiplier = 1;
         public void SetDamageMultiplier(int value)
         {
-            if (value > 0) _damageMultiplier = value;
+            _damageMultiplier = Mathf.Clamp(value, 1, 200);
         }
 
-        [SerializeField] private int _shotsPerSecond = 1;
-        public void SetFireRate(int value)
+        [SerializeField][Range(0.01f, 200)] private float _shotsPerSecond = 1;
+        public void SetFireRate(float value)
         {
-            if (value > 0) _shotsPerSecond = value;
+            _shotsPerSecond = Mathf.Clamp(value, 0.01f, 200);
         }
 
-        [SerializeField] private float _bulletSpray = 0;
+        [SerializeField][Range(0, 0.2f)] private float _bulletSpray = 0;
         public void SetBulletSpray(float value)
         {
-            _bulletSpray = Mathf.Clamp(value, 0, 0.1f);
+            _bulletSpray = Mathf.Clamp(value, 0, 0.2f);
         }
 
-        [SerializeField] private float _maxBulletRange = 100;
+        [SerializeField][Range(1, 500)] private float _maxBulletRange = 100;
         public void SetMaxBulletRange(float value)
         {
             _maxBulletRange = Mathf.Clamp(value, 1, 500);
         }
+        public float GetMaxBulletRange()
+        {
+            return _maxBulletRange;
+        }
 
-        [SerializeField] private int _bulletsPerShot = 1;
+        [SerializeField][Range(1, 100)] private int _bulletsPerShot = 1;
         public void SetBulletsPerShot(int value)
         {
             _bulletsPerShot = Mathf.Clamp(value, 1, 100);
@@ -56,7 +60,11 @@ namespace Game.WeaponSystem
         {
             _isShooting = false;
         }
-        
+        public bool IsShooting()
+        {
+            return _isShooting;
+        }
+
         private float time;
         private float lastShot;
 
@@ -101,6 +109,8 @@ namespace Game.WeaponSystem
         }
         private void Shoot()
         {
+            // Play Audio Source for shot???
+
             Vector3 spray = new Vector3(
                 _origin.right.x * Random.Range(-_bulletSpray, _bulletSpray), 
                 _origin.up.y * Random.Range(-_bulletSpray, _bulletSpray), 

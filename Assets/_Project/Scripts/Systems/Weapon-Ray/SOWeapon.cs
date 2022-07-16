@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Game.WeaponSystem
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu(fileName = "Weapon", menuName = "Weapons/Weapon")]
     public class SOWeapon : ScriptableObject
     {
         public int damage;
