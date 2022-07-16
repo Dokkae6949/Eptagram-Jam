@@ -1,10 +1,13 @@
 using UnityEngine;
-using Game.WeaponSysten;
+using Game.WeaponSystem;
 
 namespace Game.Player
 {
     public class PlayerControls : MonoBehaviour
     {
+        [Header("General")]
+        public bool isActive = true;
+
         [Header("Movement")]
         [Tooltip("Gets multiplied by the amount of drag to keep the movement snappy")]
         [SerializeField] private float _acceleration;
@@ -47,12 +50,16 @@ namespace Game.Player
         }
         private void Update()
         {
+            if (!isActive) return;
+
             UpdateInput();
             UpdateCamera();
             UpdateWeapon();
         }
         private void FixedUpdate()
         {
+            if (!isActive) return;
+
             UpdateMovement();
         }
 
