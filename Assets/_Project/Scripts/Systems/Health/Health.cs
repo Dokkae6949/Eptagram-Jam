@@ -13,7 +13,7 @@ namespace Game.Health
         public int maxDefence { get; private set; }
 
 
-        public void DealDamage(int amount)
+        public void DealDamage(int amount, Transform origin)
         {
             amount -= defence;
 
@@ -22,7 +22,7 @@ namespace Game.Health
             health -= amount;
             health = Mathf.Clamp(health, 0, maxHealth);
         }
-        public void Heal(int amount)
+        public void Heal(int amount, Transform origin)
         {
             if (amount <= 0) return;
 

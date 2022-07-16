@@ -96,7 +96,7 @@ namespace Game.WeaponSysten
 
             if (damageable == null) return;
 
-            damageable.DealDamage(_damage * _damageMultiplier);
+            damageable.DealDamage(_damage * _damageMultiplier, _origin);
         }
     }
 }
