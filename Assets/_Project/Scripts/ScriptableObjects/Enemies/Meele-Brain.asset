@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96f873147cc97114a80a76278f59c654, type: 3}
   m_Name: Meele-Brain
   m_EditorClassIdentifier: 
-  movementSpeed: 6
+  movementSpeed: 4.5

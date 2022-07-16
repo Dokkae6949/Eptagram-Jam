@@ -4,12 +4,14 @@ using Game.WeaponSystem;
 namespace Game.Enemies
 {
     [RequireComponent(typeof(Rigidbody), typeof(Weapon))]
-    public class EnemyBrain : MonoBehaviour
+    public class EnemyBrainSniper : MonoBehaviour
     {
         [SerializeField] private SOEnemyBrain _brainData;
 
         [Tooltip("Keeping this empty will result in the player being auto selected")]
         [SerializeField] private Transform _target;
+
+        [SerializeField] private LineRenderer _lineRenderer;
 
         private Weapon _weapon;
         private Rigidbody _rigidbody;
@@ -23,23 +25,8 @@ namespace Game.Enemies
             _rigidbody = GetComponent<Rigidbody>();
             _weapon = GetComponent<Weapon>();
         }
-        private void Update()
-        {
-            UpdateMovementInput();
-            UpdateShooting();
-        }
-        private void FixedUpdate()
-        {
-            UpdateForce();
-        }
 
-
-        public void LoadSOData()
-        {
-            
-        }
-        
-        private void UpdateMovementInput()
+        public void UpdateMovementInput()
         {
             if (DistanceToTargetSqr() <= _weapon.GetMaxBulletRange() * _weapon.GetMaxBulletRange())
                 _movementInput = Vector3.zero;
@@ -48,27 +35,28 @@ namespace Game.Enemies
 
             _movementInput = (_target.position - transform.position).normalized;
         }
-        private void UpdateForce()
+        public void UpdateForce()
         {
             if (!_rigidbody) return;
 
             _rigidbody.AddRelativeForce(_movementInput * _brainData.movementSpeed * _rigidbody.drag);
         }
-        private void UpdateShooting()
+        public void UpdateShooting()
         {
             if (_weapon == null) return;
 
             if (DistanceToTargetSqr() <= _weapon.GetMaxBulletRange() * _weapon.GetMaxBulletRange())
+            {
                 _weapon.StartShooting();
+            }
             else _weapon.StopShooting();
         }
 
-        private float DistanceToTargetSqr()
+        public float DistanceToTargetSqr()
         {
             if (_target == null) return 0;
 
             return (_target.position - transform.position).sqrMagnitude;
         }
-
     }
 }

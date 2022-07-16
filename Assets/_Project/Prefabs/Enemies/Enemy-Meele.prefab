@@ -194,7 +194,7 @@ GameObject:
   - component: {fileID: 703906364318682264}
   - component: {fileID: 2210926265709750303}
   - component: {fileID: 2210926265709750301}
-  - component: {fileID: 2210926265709750298}
+  - component: {fileID: 2122186180}
   m_Layer: 7
   m_Name: Enemy-Meele
   m_TagString: Untagged
@@ -284,7 +284,7 @@ MonoBehaviour:
   _maxBulletRange: 1.5
   _bulletsPerShot: 1
   _isShooting: 0
---- !u!114 &2210926265709750298
+--- !u!114 &2122186180
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -293,7 +293,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2210926265709750289}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89490aa10dbf0f146bb530a2583014a0, type: 3}
+  m_Script: {fileID: 11500000, guid: bb847a4bb24932d41a438afbc5e41f53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _brainData: {fileID: 11400000, guid: b50df9bba158e31429aafc9605c97960, type: 2}

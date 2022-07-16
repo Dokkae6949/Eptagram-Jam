@@ -9,12 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21b644a308445be4c89c394b9f4b3813, type: 3}
-  m_Name: Tommy
+  m_Script: {fileID: 11500000, guid: 96f873147cc97114a80a76278f59c654, type: 3}
+  m_Name: Sniper-Brain
   m_EditorClassIdentifier: 
-  damage: 1
-  damageMultiplier: 1
-  shotsPerSecond: 15
-  bulletSpray: 0.06
-  maxBulletRange: 8.5
-  bulletsPerShot: 1
+  movementSpeed: 2.5

@@ -16,5 +16,5 @@ MonoBehaviour:
   damageMultiplier: 1
   shotsPerSecond: 1
   bulletSpray: 0.01
-  maxBulletRange: 22
+  maxBulletRange: 11
   bulletsPerShot: 1

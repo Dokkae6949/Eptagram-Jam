@@ -549,17 +549,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1353929774883554606, guid: 9091ca9dcbe9c324184b4501cf67685d, type: 3}
-      propertyPath: m_SortingOrder
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2210926265709750289, guid: 9091ca9dcbe9c324184b4501cf67685d, type: 3}
       propertyPath: m_Name
       value: Enemy-Meele
-      objectReference: {fileID: 0}
-    - target: {fileID: 2210926265709750289, guid: 9091ca9dcbe9c324184b4501cf67685d, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2210926265709750302, guid: 9091ca9dcbe9c324184b4501cf67685d, type: 3}
       propertyPath: m_RootOrder
@@ -604,14 +596,6 @@ PrefabInstance:
     - target: {fileID: 2210926265709750302, guid: 9091ca9dcbe9c324184b4501cf67685d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2597257261641258306, guid: 9091ca9dcbe9c324184b4501cf67685d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.061
-      objectReference: {fileID: 0}
-    - target: {fileID: 5403688375908964022, guid: 9091ca9dcbe9c324184b4501cf67685d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.062
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9091ca9dcbe9c324184b4501cf67685d, type: 3}
@@ -666,21 +650,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8086076588324555878, guid: 422e8eba078f0714fa9039dd09632fa9, type: 3}
-      propertyPath: _weaponData
-      value: 
-      objectReference: {fileID: 11400000, guid: c4100a9bd3d471049b7bfcc326f02a18, type: 2}
-    - target: {fileID: 8086076588324555878, guid: 422e8eba078f0714fa9039dd09632fa9, type: 3}
-      propertyPath: _maxBulletRange
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 8086076588324555882, guid: 422e8eba078f0714fa9039dd09632fa9, type: 3}
       propertyPath: m_Name
       value: Enemy-Sniper
-      objectReference: {fileID: 0}
-    - target: {fileID: 8086076588324555882, guid: 422e8eba078f0714fa9039dd09632fa9, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 422e8eba078f0714fa9039dd09632fa9, type: 3}
@@ -735,25 +707,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8285977053322525557, guid: b42e12dd1a1584d4cbe5eeead4267ff2, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8285977053322525558, guid: b42e12dd1a1584d4cbe5eeead4267ff2, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 8285977053322525558, guid: b42e12dd1a1584d4cbe5eeead4267ff2, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8285977053322525561, guid: b42e12dd1a1584d4cbe5eeead4267ff2, type: 3}
-      propertyPath: _maxBulletRange
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 8285977053322525562, guid: b42e12dd1a1584d4cbe5eeead4267ff2, type: 3}
-      propertyPath: isActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b42e12dd1a1584d4cbe5eeead4267ff2, type: 3}
