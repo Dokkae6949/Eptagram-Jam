@@ -1,12 +1,13 @@
 using UnityEngine;
 using Game.StateSystem;
 using Game.WeaponSystem;
+using Game.Generic;
 
 namespace Game.Enemies.States
 {
     public class ChaseState : State
     {
-        [SerializeField] private Weapon _weapon;
+        [SerializeField] private WeaponBasic _weapon;
         [SerializeField] private MovementSystem _movement;
 
         private Transform _player;
@@ -19,10 +20,11 @@ namespace Game.Enemies.States
         public override State StateUpdate()
         {
             Move();
-
-            if (!InRange()) return this;
-            if (!CanSee()) return this;
-
+            //Debug.Log("R " + Helper.InRange(transform.position, _player.position, _weapon.GetMaxBulletRange()));
+            //Debug.Log("C " + Helper.CanSee(transform.position, _player.position, _weapon.GetMaxBulletRange(), "Player"));
+            if (!Helper.InRange(transform.position, _player.position, _weapon.GetMaxShootingRange())) return this;
+            if (!Helper.CanSee(transform.position, _player.position, _weapon.GetMaxShootingRange(), "Player")) return this;
+            
             _movement.SetInput(Vector2.zero);
             return _nextState;
         }
@@ -31,30 +33,8 @@ namespace Game.Enemies.States
         {
             Vector2 moveDir = new Vector2(
                 _player.position.x - transform.position.x,
-                _player.position.y - transform.position.y);
+                _player.position.z - transform.position.z);
             _movement.SetInput(moveDir.normalized);
-        }
-        private bool InRange()
-        {
-            Vector3 difference = new Vector3(
-              _player.position.x - transform.position.x,
-              _player.position.y - transform.position.y,
-              _player.position.z - transform.position.z);
-            float sqrDistance =
-              Mathf.Pow(difference.x, 2f) +
-              Mathf.Pow(difference.y, 2f) +
-              Mathf.Pow(difference.z, 2f);
-
-            return sqrDistance <= Mathf.Pow(_weapon.GetMaxBulletRange(), 2);
-        }
-        private bool CanSee()
-        {
-            RaycastHit rayResult;
-            bool hasHit = Physics.Raycast(
-                transform.position,
-                _player.position, out rayResult, _weapon.GetMaxBulletRange());
-
-            return hasHit && rayResult.transform.tag == "Player";
         }
     }
 }

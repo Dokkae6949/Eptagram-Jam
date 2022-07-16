@@ -5,13 +5,14 @@ using BrackeysJam.Events;
 
 namespace Game.WeaponSystem
 {
-    public class Weapon : WeaponBasic
+    public class ProjectileWeapon : WeaponBasic
     {
         #region Fields and Properties
 
         [SerializeField] private Transform _origin;
         [SerializeField] private LayerMask _damageableLayer;
-        [SerializeField] private SOWeapon _weaponData;
+        [SerializeField] private Projectile _projectile;
+        [SerializeField] private BulletHitEvent _bulletHitEvent;
 
         [SerializeField][Range(0, 1000)] private int _damage;
         public void SetDamage(int value)
@@ -23,6 +24,12 @@ namespace Game.WeaponSystem
         public void SetDamageMultiplier(int value)
         {
             _damageMultiplier = Mathf.Clamp(value, 1, 200);
+        }
+
+        [SerializeField][Range(0.01f, 500f)] private float _speed = 5;
+        public void SetBulletSpeed(float value)
+        {
+            _speed = Mathf.Clamp(value, 0.0f, 500f);
         }
 
         [SerializeField][Range(0.01f, 200)] private float _shotsPerSecond = 1;
@@ -37,15 +44,19 @@ namespace Game.WeaponSystem
             _bulletSpray = Mathf.Clamp(value, 0, 0.2f);
         }
 
-        [SerializeField][Range(1, 500)] private float _maxShootingRange = 100;
+        [SerializeField][Range(0.01f, 500)] private float _lifeTime = 100;
+        public void SetLifeTime(float value)
+        {
+            _lifeTime = Mathf.Clamp(value, 0.01f, 500);
+        }
+        public float GetLifeTime() => _lifeTime;
+
+        [SerializeField][Range(0.01f, 500)] private float _maxShootingRange = 100;
         public void SetMaxShootingRange(float value)
         {
-            _maxShootingRange = Mathf.Clamp(value, 1, 500);
+            _maxShootingRange = Mathf.Clamp(value, 0.01f, 500);
         }
-        override public float GetMaxShootingRange()
-        {
-            return _maxShootingRange;
-        }
+        override public float GetMaxShootingRange() => _maxShootingRange;
 
         [SerializeField][Range(1, 100)] private int _bulletsPerShot = 1;
         public void SetBulletsPerShot(int value)
@@ -53,7 +64,9 @@ namespace Game.WeaponSystem
             _bulletsPerShot = Mathf.Clamp(value, 1, 100);
         }
 
-        [ReadOnly][SerializeField]
+
+        [ReadOnly]
+        [SerializeField]
         private bool _isShooting = false;
         public void StartShooting()
         {
@@ -68,7 +81,6 @@ namespace Game.WeaponSystem
             return _isShooting;
         }
 
-        private float time;
         private float lastShot;
 
         #endregion
@@ -79,25 +91,13 @@ namespace Game.WeaponSystem
             ShootingHandler();
         }
 
-        public void CopySOData()
-        {
-            if (_weaponData == null) return;
-
-            _damage = _weaponData.damage;
-            _damageMultiplier = _weaponData.damageMultiplier;
-            _shotsPerSecond = _weaponData.shotsPerSecond;
-            _bulletSpray = _weaponData.bulletSpray;
-            _maxShootingRange = _weaponData.maxBulletRange;
-            _bulletsPerShot = _weaponData.bulletsPerShot;
-        }
         private void ShootingHandler()
         {
-            bool isCooldownOver = (time - lastShot) > (1f / _shotsPerSecond) ? true : false;
+            bool isCooldownOver = lastShot >= (1f / _shotsPerSecond) ? true : false;
 
             if (_isShooting && isCooldownOver)
             {
-                time = 0f;
-                lastShot = time;
+                lastShot = 0f;
 
                 for (int i = 0; i < _bulletsPerShot; i++)
                 {
@@ -105,35 +105,21 @@ namespace Game.WeaponSystem
                 }
             }
 
-            time += Time.deltaTime;
+            lastShot += Time.deltaTime;
         }
         override public void Shoot()
         {
             // Play Audio Source for shot???
 
-            Vector3 spray = new Vector3(
-                _origin.right.x * Random.Range(-_bulletSpray, _bulletSpray), 
-                _origin.up.y * Random.Range(-_bulletSpray, _bulletSpray), 
-                0);
-
-            RaycastHit hit;
-            bool hasHit = Physics.Raycast(_origin.position, _origin.forward + spray, out hit, _maxShootingRange, _damageableLayer);
-            // Debug.DrawRay(_origin.position, (_origin.forward + spray) * _maxBulletRange, Color.red, .1f);
+            Quaternion spawnRotation = _origin.transform.rotation;
+            Projectile bullet = Instantiate(_projectile, transform.position, spawnRotation);
             
-            if (!hasHit) return;
-
-            IDamageable damageable = hit.transform.GetComponent<IDamageable>();
-
-            if (damageable == null) return;
-
-            damageable.DealDamage(_damage * _damageMultiplier, _origin);
-
-            BulletHit bulletHit;
-            bulletHit.hitPosition = hit.point;
-            bulletHit.bulletOrigin = _origin.gameObject;
-            bulletHit.hitObject = hit.transform.gameObject;
-
-            _weaponData._bulletHitEvent.Raise(bulletHit);
+            bullet.SetOrigin(_origin);
+            bullet.SetDamage(_damage);
+            bullet.SetSpeed(_speed);
+            bullet.SetDamageableLayer(_damageableLayer);
+            bullet.SetBulletHitEvent(_bulletHitEvent);
+            bullet.SetLifeTime(_lifeTime);
         }
     }
 }

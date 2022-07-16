@@ -14,6 +14,8 @@ namespace Game.Enemies
         [SerializeField] private float _acceleration;
         [SerializeField] private float _accelerationMultiplier = 1f;
 
+        [SerializeField] private float _maxSpeed;
+
         public void SetAcceleration(float value)
         {
             if (value >= 0f) _acceleration = value;
@@ -42,7 +44,10 @@ namespace Game.Enemies
         }
         private void FixedUpdate()
         {
-            _rigidbody.AddRelativeForce(new Vector3(_input.x, 0, _input.y) * _rigidbody.drag);
+            _rigidbody.AddRelativeForce(new Vector3(_input.x, 0, _input.y) * _rigidbody.drag * _acceleration * _accelerationMultiplier);
+        
+            if (_rigidbody.velocity.sqrMagnitude > Mathf.Pow(_maxSpeed, 2))
+                _rigidbody.velocity = _rigidbody.velocity.normalized * _maxSpeed;
         }
     }
 }

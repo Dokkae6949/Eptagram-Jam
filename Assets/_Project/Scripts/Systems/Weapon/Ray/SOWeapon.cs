@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using BrackeysJam.Events;
 
 namespace Game.WeaponSystem
 {
@@ -18,5 +19,7 @@ namespace Game.WeaponSystem
         [Range(1, 500)] public float maxBulletRange = 100;
 
         [Range(1, 100)] public int bulletsPerShot = 1;
+
+        public BulletHitEvent _bulletHitEvent;
     }
 }
