@@ -39,7 +39,7 @@ namespace Game.Health
             Health = Mathf.Clamp(Health, 0, MaxHealth);
         }
 
-        public void SetDefence(int defence)
+        public void SetDefence(float defence)
         {
             _defenceModifier = defence;
         }

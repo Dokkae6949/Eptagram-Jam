@@ -88,7 +88,10 @@ namespace Game
 
         public void SetCharacteristics(List<int> characteristics)
         {
-
+            _weaponScript.SetDamageMultiplier(characteristics[0] * 0.5f);
+            _healthSystem.SetDefence(characteristics[1] * 0.5f);
+            _playerControls.SetAccelerationMultiplier(Mathf.Clamp(characteristics[2] * 0.5f, 1f, 1000f));
+            _weaponScript.SetFireRate(characteristics[3] * 0.5f);
         }
 
 

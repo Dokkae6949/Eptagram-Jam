@@ -30,6 +30,8 @@ namespace Game.StateSystem
         private bool _hasCalledStart = false;
         private bool _hasCalledEnd = false;
 
+        
+
         #endregion
 
 

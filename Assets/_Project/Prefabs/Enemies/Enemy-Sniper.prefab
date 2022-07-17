@@ -555,9 +555,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4f0e8bfdeee9bf44a5dc32c3dd60aa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _defenceModifier: 0
   OnDeathEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 293049445}
+        m_TargetAssemblyTypeName: Game.StateSystem.StateManager, Assembly-CSharp
+        m_MethodName: SetIsActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &293049444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -586,8 +599,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f013e121afc071946b774226b7e1883a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isActive: 1
+  _isActive: 0
   _currentState: {fileID: 1553403606}
+  _idleState: {fileID: 0}
 --- !u!114 &293049446
 MonoBehaviour:
   m_ObjectHideFlags: 0
