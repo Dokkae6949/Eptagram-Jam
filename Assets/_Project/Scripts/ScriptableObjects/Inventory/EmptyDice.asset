@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cb861de2b4146c47a1b2d9121053996, type: 3}
   m_Name: EmptyDice
   m_EditorClassIdentifier: 
-  faces: []
+  faces:
+  - number: 0
+    sprite: {fileID: 0}
+    color: {r: 0, g: 0, b: 0, a: 0}
   currentFace: 0
   isEmpty: 1

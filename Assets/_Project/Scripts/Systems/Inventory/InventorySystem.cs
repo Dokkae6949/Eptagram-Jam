@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace Game.Inventory
 {
@@ -11,7 +12,10 @@ namespace Game.Inventory
         public SODice[] diceData;
         public SODice emptyDice;
 
-        private int _nonEmptyDiceCount; // not the abilities
+        public Button _rollButton;
+        public Button _doneButton;
+
+        [SerializeField] private int _maxDice = 8;
 
 
         public void SwapDice(int a, int b)
@@ -25,30 +29,57 @@ namespace Game.Inventory
             inventory[a] = inventory[b];
             inventory[b] = tmp;
         }
-        public void ResetDice()
+        public void ResetAbilityDice()
         {
             if (inventory.Length < 3) return;
 
-            _nonEmptyDiceCount -= 4;
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 4; i++)
+            {
+                inventory[i].UpdateDiceData(emptyDice);
+            }
+
+            _rollButton.interactable = true;
+            _doneButton.interactable = false;
+        }
+        public void ResetInventory()
+        {
+            for (int i = 0; i < inventory.Length; i++)
             {
                 inventory[i].UpdateDiceData(emptyDice);
             }
         }
         public void AddDice(int amount)
         {
-            while (amount > 0 && _nonEmptyDiceCount < 8)
-            {
-                for (int i = 0; i < inventory.Length; i++)
-                {
-                    if (inventory[i].isEmpty) continue;
+            if (inventory.Length < 4) return;
+            if (GetDiceInInventory() >= _maxDice)
+            {   
+                _rollButton.interactable = false;
+                _doneButton.interactable = true;
 
-                    inventory[i].UpdateDiceData(diceData[Random.Range(0, diceData.Length)]);
-                }
-
-                _nonEmptyDiceCount++;
-                amount--;
+                return;
             }
+
+            for (int i = 4; i < inventory.Length && amount > 0; i++)
+            {
+                if (!inventory[i].isEmpty) continue;
+
+                inventory[i].UpdateDiceData(diceData[Random.Range(0, diceData.Length)]);
+                inventory[i].currentFace = Random.Range(0, inventory[i].faces.Length);
+                amount--;
+                i = 3;
+            }
+        }
+
+        private int GetDiceInInventory()
+        {
+            int count = 0;
+
+            for (int i = 0; i < inventory.Length; i++)
+            {
+                count += inventory[i].isEmpty ? 0 : 1;
+            }
+
+            return count;
         }
     }
 }

@@ -22,14 +22,16 @@ namespace Game.Inventory
                 _image = GetComponent<RawImage>();
 
             if (_diceData == null) return;
+
+            UpdateDiceData();
         }
         private void Update()
         {
-            if (_diceData == null) return;
             if (currentFace < 0 || currentFace >= faces.Length) return;
 
             if (faces[currentFace].sprite != null)
                 _image.texture = faces[currentFace].sprite.texture;
+
             _image.color = faces[currentFace].color;
         }
 

@@ -42,13 +42,15 @@ namespace Game.Inventory
             
             Face[] facesTMP = _dice.faces;
             int curFaceTMP = _dice.currentFace;
+            bool isEmptyTMP = _dice.isEmpty;
 
             _dice.faces = dice.faces;
             _dice.currentFace = dice.currentFace;
+            _dice.isEmpty = dice.isEmpty;
 
             dice.faces = facesTMP;
             dice.currentFace = curFaceTMP;
-
+            dice.isEmpty = isEmptyTMP;
         }
         public void OnPointerDown(PointerEventData eventData)
         {
