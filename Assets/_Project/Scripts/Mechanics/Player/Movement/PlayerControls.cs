@@ -6,6 +6,8 @@ namespace Game.Player
     [RequireComponent(typeof(Rigidbody))]
     public class PlayerControls : MonoBehaviour
     {
+        #region Fields and Properties
+
         [Header("General")]
         public bool isActive = true;
 
@@ -21,6 +23,12 @@ namespace Game.Player
         public void SetAccelerationMultiplier(float value)
         {
             if (value >= 0f) _accelerationMultiplier = value;
+        }
+
+        [SerializeField] private float _maxSpeed;
+        public void SetMaxSpeed(float value)
+        {
+            _maxSpeed = Mathf.Clamp(value, 0, float.MaxValue);
         }
 
         [Header("Camera")]
@@ -41,6 +49,7 @@ namespace Game.Player
         private Vector2 _mouseInput;
         private float xRotationThing = 0f;// (° _°)
 
+        #endregion
 
         private void Start()
         {
@@ -72,16 +81,18 @@ namespace Game.Player
             Vector2 moveDir = _movementInput.normalized * _acceleration * _accelerationMultiplier * _rigidbody.drag;
 
             _rigidbody.AddRelativeForce(new Vector3(moveDir.x, 0, moveDir.y));
+
+            if (_rigidbody.velocity.sqrMagnitude > Mathf.Pow(_maxSpeed, 2))
+                _rigidbody.velocity = _rigidbody.velocity.normalized * _maxSpeed;
         }
         private void UpdateCamera()
         {
             if (!cameraAnchor) return;
 
-            transform.Rotate(Vector3.up * _mouseInput.x * Time.deltaTime);
-
             xRotationThing -= _mouseInput.y * Time.deltaTime;
             xRotationThing = Mathf.Clamp(xRotationThing, -90, 90);
             cameraAnchor.localRotation = Quaternion.Euler(xRotationThing, 0f, 0f);
+            transform.Rotate(Vector3.up * _mouseInput.x * Time.deltaTime);
         }
         private void UpdateWeapon()
         {

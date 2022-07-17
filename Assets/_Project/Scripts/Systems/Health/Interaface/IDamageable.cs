@@ -7,6 +7,6 @@ namespace Game
     public interface IDamageable
     {
         void DealDamage(int amount, Transform origin);
-        void Heal(int amount, Transform origiin);
+        void Heal(int amount, Transform origin);
     }
 }

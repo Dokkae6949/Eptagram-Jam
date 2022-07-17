@@ -16,5 +16,6 @@ MonoBehaviour:
   damageMultiplier: 1
   shotsPerSecond: 15
   bulletSpray: 0.06
-  maxBulletRange: 200
+  maxBulletRange: 8.5
   bulletsPerShot: 1
+  _bulletHitEvent: {fileID: 11400000, guid: e45ca296f28dee6488e97ceb754136d0, type: 2}

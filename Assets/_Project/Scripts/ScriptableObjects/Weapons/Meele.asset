@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21b644a308445be4c89c394b9f4b3813, type: 3}
   m_Name: Meele
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 3
   damageMultiplier: 1
   shotsPerSecond: 1
   bulletSpray: 0.02
-  maxBulletRange: 2.5
+  maxBulletRange: 1.1
   bulletsPerShot: 1
+  _bulletHitEvent: {fileID: 11400000, guid: e45ca296f28dee6488e97ceb754136d0, type: 2}
