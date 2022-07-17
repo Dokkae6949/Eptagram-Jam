@@ -22,7 +22,7 @@ namespace Game.Health
             amount -= (int)(Defence * _defenceModifier) ;
 
             if (amount <= 0) return;
-            Debug.Log("Boom");
+
             Health -= amount;
             Health = Mathf.Clamp(Health, 0, MaxHealth);
 
