@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 3
   damageMultiplier: 1
-  shotsPerSecond: 1
+  shotsPerSecond: 0.5
   bulletSpray: 0.02
   maxBulletRange: 1.1
   bulletsPerShot: 1

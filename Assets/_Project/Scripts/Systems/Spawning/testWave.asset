@@ -18,7 +18,7 @@ MonoBehaviour:
     spawners:
     - 1
     enemy: {fileID: 6689796806804848618, guid: 7e09dd46cde262c4e95fd9912d9ee86d, type: 3}
-    num: 1
+    num: 0
   - start: 10
     end: 15
     spawners:
@@ -30,10 +30,10 @@ MonoBehaviour:
     spawners:
     - 3
     enemy: {fileID: 5183087447334564271, guid: 95ad1e34a4a0ad544beab7c1d455e6b9, type: 3}
-    num: 1
+    num: 0
   - start: 20
     end: 25
     spawners:
     - 4
     enemy: {fileID: 6562705224823752731, guid: 6c080c43ffe3fc04a977ea121b939f17, type: 3}
-    num: 1
+    num: 0
