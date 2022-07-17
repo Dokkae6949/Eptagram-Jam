@@ -131,7 +131,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _nextState: {fileID: 3233985925533023573}
-  _isRunning: 0
   _weapon: {fileID: 3233985926436923366}
   _movement: {fileID: 3233985926436923364}
 --- !u!114 &3233985925533023573
@@ -147,7 +146,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _nextState: {fileID: 3233985925533023575}
-  _isRunning: 0
   _chaseState: {fileID: 3233985925533023574}
   _weapon: {fileID: 3233985926436923366}
   _requiredLockTime: 0.1
@@ -164,7 +162,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _nextState: {fileID: 3233985925533023573}
-  _isRunning: 0
   _weapon: {fileID: 3233985926436923366}
 --- !u!114 &47807038490208865
 MonoBehaviour:
@@ -179,7 +176,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _nextState: {fileID: 47807038490208865}
-  _isRunning: 0
   _movement: {fileID: 3233985926436923364}
 --- !u!1 &3233985926207726413
 GameObject:
@@ -326,6 +322,7 @@ GameObject:
   - component: {fileID: 3233985926436923364}
   - component: {fileID: 3233985926436923365}
   - component: {fileID: 3233985926436923366}
+  - component: {fileID: -6048857264780929303}
   m_Layer: 7
   m_Name: Enemy-Speed
   m_TagString: Untagged
@@ -392,6 +389,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4f0e8bfdeee9bf44a5dc32c3dd60aa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _health: 0
+  _maxHealth: 0
   _defenceModifier: 0
   OnDeathEvent:
     m_PersistentCalls:
@@ -400,6 +399,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: Game.StateSystem.StateManager, Assembly-CSharp
         m_MethodName: SetIsActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: -6048857264780929303}
+        m_TargetAssemblyTypeName: Game.MonsterRegistrator, Assembly-CSharp
+        m_MethodName: OnMonsterDeath
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -458,11 +469,23 @@ MonoBehaviour:
   _weaponData: {fileID: 11400000, guid: bc0b31ad044da4b4e8d115703002033c, type: 2}
   _damage: 5
   _damageMultiplier: 1
-  _shotsPerSecond: 2
+  _shotsPerSecond: 0.5
   _bulletSpray: 0.02
   _maxShootingRange: 1.5
   _bulletsPerShot: 1
   _isShooting: 0
+--- !u!114 &-6048857264780929303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6689796806804848618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81dcb119477a9c7488c75ef70fa80cd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6689796806902739589
 GameObject:
   m_ObjectHideFlags: 0

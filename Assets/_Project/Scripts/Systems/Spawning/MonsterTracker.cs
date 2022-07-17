@@ -19,6 +19,7 @@ namespace Game
         public void MonsterDied(MonsterRegistrator monster)
         {
             _monstersAlive--;
+            Debug.Log(_monstersAlive);
             if(_monstersAlive<=0)
             {
                 GameManager.Instance.OnWaveDone();

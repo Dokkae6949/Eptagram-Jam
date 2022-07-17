@@ -110,7 +110,7 @@ namespace Game.WeaponSystem
         override public void Shoot()
         {
             // Play Audio Source for shot???
-
+            Debug.Log($"shot happened");
             Vector3 spray = new Vector3(
                 _origin.right.x * Random.Range(-_bulletSpray, _bulletSpray), 
                 _origin.up.y * Random.Range(-_bulletSpray, _bulletSpray), 
@@ -127,7 +127,7 @@ namespace Game.WeaponSystem
             if (damageable == null) return;
 
             damageable.DealDamage((int)(_damage * _damageMultiplier), _origin);
-
+            Debug.Log($"damage dealt {(_damage * _damageMultiplier)}");
             BulletHit bulletHit;
             bulletHit.hitPosition = hit.point;
             bulletHit.bulletOrigin = _origin.gameObject;

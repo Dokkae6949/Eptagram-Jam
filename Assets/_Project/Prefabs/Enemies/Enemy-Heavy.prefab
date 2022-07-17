@@ -307,6 +307,7 @@ GameObject:
   - component: {fileID: 3108867414851309589}
   - component: {fileID: 3108867414851309588}
   - component: {fileID: 8642552292437886814}
+  - component: {fileID: -6459766741221662743}
   m_Layer: 7
   m_Name: Enemy-Heavy
   m_TagString: Untagged
@@ -373,6 +374,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4f0e8bfdeee9bf44a5dc32c3dd60aa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _health: 0
+  _maxHealth: 0
   _defenceModifier: 0
   OnDeathEvent:
     m_PersistentCalls:
@@ -381,6 +384,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: Game.StateSystem.StateManager, Assembly-CSharp
         m_MethodName: SetIsActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: -6459766741221662743}
+        m_TargetAssemblyTypeName: Game.MonsterRegistrator, Assembly-CSharp
+        m_MethodName: OnMonsterDeath
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -440,13 +455,25 @@ MonoBehaviour:
   _bulletHitEvent: {fileID: 11400000, guid: e45ca296f28dee6488e97ceb754136d0, type: 2}
   _damage: 30
   _damageMultiplier: 1
-  _speed: 12
+  _speed: 10
   _shotsPerSecond: 0.6
   _bulletSpray: 0
   _lifeTime: 6
   _maxShootingRange: 7
   _bulletsPerShot: 1
   _isShooting: 0
+--- !u!114 &-6459766741221662743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6562705224823752731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81dcb119477a9c7488c75ef70fa80cd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6562705224852014452
 GameObject:
   m_ObjectHideFlags: 0

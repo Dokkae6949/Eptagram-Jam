@@ -52,7 +52,7 @@ namespace Game
                 nmy.transform.position = positions[i % positions.Count];
                 yield return new WaitForSeconds(freq);
             }
-            Destroy(this);
+            //Destroy(this);
         }
     }
 }
