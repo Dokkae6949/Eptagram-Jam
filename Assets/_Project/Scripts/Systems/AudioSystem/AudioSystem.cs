@@ -10,6 +10,10 @@ namespace Game
         [SerializeField] private float _panWaveScale;
 
 
+        private void Start()
+        {
+            DontDestroyOnLoad(gameObject);
+        }
         private void Update()
         {
             _audioSource.panStereo = Mathf.Sin(Time.time) * _panWaveScale;
