@@ -1,12 +1,16 @@
+using BrackeysJam.Events;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using BrackeysJam.Events;
+
+using UnityEngine.Events;
 
 namespace Game.WeaponSystem
 {
     public class ProjectileWeapon : WeaponBasic
     {
+        [SerializeField]
+        private UnityEvent OnShootEvent;
         #region Fields and Properties
 
         [SerializeField] private Transform _origin;
@@ -113,7 +117,7 @@ namespace Game.WeaponSystem
 
             Quaternion spawnRotation = _origin.transform.rotation;
             Projectile bullet = Instantiate(_projectile, transform.position, spawnRotation);
-            
+            OnShootEvent?.Invoke();
             bullet.SetOrigin(_origin);
             bullet.SetDamage(_damage);
             bullet.SetSpeed(_speed);

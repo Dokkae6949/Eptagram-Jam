@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using BrackeysJam.Events;
+using UnityEngine.Events;
 
 namespace Game.WeaponSystem
 {
     public class Weapon : WeaponBasic
     {
         #region Fields and Properties
+        [SerializeField]
+        private UnityEvent OnShootEvent;
 
         [SerializeField] private Transform _origin;
         [SerializeField] private LayerMask _damageableLayer;
@@ -109,6 +112,7 @@ namespace Game.WeaponSystem
         }
         override public void Shoot()
         {
+            OnShootEvent?.Invoke();
             // Play Audio Source for shot???
             Debug.Log($"shot happened");
             Vector3 spray = new Vector3(
