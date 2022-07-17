@@ -38,11 +38,22 @@ namespace Game
         {
             _state = GameState.Beginning;
             _currentWaveNr = 0;
-            _waveInfoManager.OnCountdownFinished += OnCountdownOver;
         }
         #endregion
 
         #region Public Methods ======================================================================================================================
+        public void OnCharacteristicsDistributed()
+        {
+            //Hide overlay
+            _state = GameState.Countdown;
+            _waveInfoManager.CountDown(10);
+
+        }
+        public void OnCountdownOver()
+        {
+            _state = GameState.Wave;
+            _spawnController.Spawn(_waves[_currentWaveNr]);
+        }
         public void OnWaveDone()
         {
             _currentWaveNr++;
@@ -51,6 +62,9 @@ namespace Game
                 OnGameWon();
                 return;
             }
+            //Open Overlay
+            
+
 
         }
 
@@ -62,18 +76,9 @@ namespace Game
         {
             _state = GameState.Win;
         }
-        public void OnCharacteristicsDistributed()
-        {
-            //Hide overlay
-            _state = GameState.Countdown;
-            _waveInfoManager.CountDown(10);
-        }
 
-        public void OnCountdownOver() 
-        {
-            _state = GameState.Wave;
-            _spawnController.Spawn(_waves[_currentWaveNr]);
-        }
+
+
         #endregion
 
     }

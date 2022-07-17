@@ -32,7 +32,6 @@ namespace Game
         [SerializeField]
         private Sprite _sprt_hardcore;
 
-        public UnityAction OnCountdownFinished;
         private bool _countdownEnabled;
         private float _countdownSeconds;
         private bool _nextSecond;
@@ -63,7 +62,8 @@ namespace Game
             if (_countdownSeconds <=0f)
             {
                 _countdownEnabled = false;
-                OnCountdownFinished?.Invoke();
+
+                GameManager.Instance.OnCountdownOver();
             }
 
             
