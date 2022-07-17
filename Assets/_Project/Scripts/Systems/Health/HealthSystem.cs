@@ -11,6 +11,7 @@ namespace Game.Health
         public int MaxHealth { get; private set; }
 
         public int Defence { get; private set; }
+        public float _defenceModifier;
         public int MaxDefence { get; private set; }
 
         public UnityEvent OnDeathEvent;
@@ -18,7 +19,7 @@ namespace Game.Health
 
         public void DealDamage(int amount, Transform origin)
         {
-            amount -= Defence;
+            amount -= (int)(Defence * _defenceModifier) ;
 
             if (amount <= 0) return;
             Debug.Log("Boom");
@@ -36,6 +37,16 @@ namespace Game.Health
 
             Health += amount;
             Health = Mathf.Clamp(Health, 0, MaxHealth);
+        }
+
+        public void SetDefence(int defence)
+        {
+            _defenceModifier = defence;
+        }
+
+        public void ResetDefence()
+        {
+            _defenceModifier = 0.5f;
         }
 
         private void OnDeath()

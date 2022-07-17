@@ -7,6 +7,9 @@ namespace Game
 {
     public class SpawnerController : MonoBehaviour
     {
+        [Header("References")]
+        [SerializeField]
+        MonsterTracker _monsterTracker;
         [SerializeField]GameObject spawnedSpawnerPre;
         public static Dictionary<string, Vector3> spawnMap;
         public static Dictionary<string, int> spawnNums;
@@ -28,6 +31,8 @@ namespace Game
         }
         public void Spawn(WaveData wave)
         {
+            _monsterTracker.SpawnNewWave(wave.GetEnemyNumber());
+
             foreach (var group in wave.groups)
             {
                 var freq = (group.end - group.start) / (group.num);
@@ -36,10 +41,19 @@ namespace Game
                 {
                     spawnerPos.Add(spawnMap[s]);
                 }
-                GameObject inst = Instantiate(spawnedSpawnerPre);
-                var comp = inst.GetComponent<SpawnedSpawner>();
-                StartCoroutine(comp.SpawningRoutine(group, freq, spawnerPos));
+                
+                StartCoroutine(SpawningRoutine(group, freq, spawnerPos));
             }
+        }
+        public IEnumerator SpawningRoutine(SpawnGroup group, float freq, List<Vector3> positions)
+        {
+            for (int i = 0; i < group.num; i++)
+            {
+                GameObject nmy = Instantiate(group.enemy);
+                nmy.transform.position = positions[i % positions.Count];
+                yield return new WaitForSeconds(freq);
+            }
+            Destroy(this);
         }
     }
 }
