@@ -132,6 +132,7 @@ namespace Game.WeaponSystem
             bulletHit.hitPosition = hit.point;
             bulletHit.bulletOrigin = _origin.gameObject;
             bulletHit.hitObject = hit.transform.gameObject;
+            bulletHit.type = BulletHit.Type.Ray;
 
             _weaponData._bulletHitEvent.Raise(bulletHit);
         }

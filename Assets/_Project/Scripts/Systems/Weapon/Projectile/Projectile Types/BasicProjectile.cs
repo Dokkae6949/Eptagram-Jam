@@ -11,5 +11,10 @@ namespace Game.WeaponSystem
         {
             transform.Translate(Vector3.forward * _speed * Time.deltaTime);
         }
+
+        private protected override void OnTriggerEnterCallback(Collider other)
+        {
+            Destroy(gameObject);
+        }
     }
 }

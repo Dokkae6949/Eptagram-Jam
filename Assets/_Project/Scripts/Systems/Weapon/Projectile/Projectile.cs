@@ -47,6 +47,8 @@ namespace Game.WeaponSystem
             _lifeTime = Mathf.Clamp(value, 0.01f, float.MaxValue);
         }
 
+        protected private BulletHit.Type _projectileType;
+
         #endregion
 
         private void Start()
@@ -61,6 +63,8 @@ namespace Game.WeaponSystem
             Destroy(gameObject);
         }
 
+        protected abstract private void OnTriggerEnterCallback(Collider other);
+
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject == _origin.parent.gameObject) return;
@@ -69,6 +73,7 @@ namespace Game.WeaponSystem
             bulletHit.hitPosition = other.ClosestPointOnBounds(transform.position);
             bulletHit.hitObject = other.gameObject;
             bulletHit.bulletOrigin = _origin.gameObject;
+            bulletHit.type = _projectileType;
 
             _bulletHitEvent.Raise(bulletHit);
 
@@ -77,7 +82,7 @@ namespace Game.WeaponSystem
             if (health != null)
                 health.DealDamage(_damage, _origin);
 
-            Destroy(gameObject);
+            OnTriggerEnterCallback(other);
         }
     }
 }

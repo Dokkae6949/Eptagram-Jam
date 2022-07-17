@@ -609,7 +609,7 @@ MonoBehaviour:
   _damageMultiplier: 1
   _shotsPerSecond: 1
   _bulletSpray: 0.01
-  _maxBulletRange: 11
+  _maxShootingRange: 11
   _bulletsPerShot: 1
   _isShooting: 0
 --- !u!1 &8086076588404228357

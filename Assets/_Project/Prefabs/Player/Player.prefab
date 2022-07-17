@@ -375,12 +375,12 @@ MonoBehaviour:
   _damageableLayer:
     serializedVersion: 2
     m_Bits: 128
-  _weaponData: {fileID: 11400000, guid: c337dd66cc2d0a4438c0af5277c0e4d1, type: 2}
+  _weaponData: {fileID: 11400000, guid: 462eafc8258fed546bfb2ace71d70404, type: 2}
   _damage: 1
   _damageMultiplier: 1
   _shotsPerSecond: 15
   _bulletSpray: 0.06
-  _maxBulletRange: 8.5
+  _maxShootingRange: 100
   _bulletsPerShot: 1
   _isShooting: 0
 --- !u!114 &8285977053322525562
@@ -396,7 +396,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActive: 1
-  _acceleration: 10
+  _acceleration: 5
   _accelerationMultiplier: 1
   _maxSpeed: 10
   cameraAnchor: {fileID: 8285977053092549233}
@@ -465,7 +465,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 183
+    m_Bits: 439
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
