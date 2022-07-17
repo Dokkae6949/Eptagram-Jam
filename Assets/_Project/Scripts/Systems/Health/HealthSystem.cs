@@ -7,8 +7,8 @@ namespace Game.Health
 {
     public class HealthSystem : MonoBehaviour, IDamageable
     {
-        public int Health { get; private set; }
-        public int MaxHealth { get; private set; }
+        public int _health;
+        public int _maxHealth;
 
         public int Defence { get; private set; }
         public float _defenceModifier;
@@ -23,10 +23,10 @@ namespace Game.Health
 
             if (amount <= 0) return;
 
-            Health -= amount;
-            Health = Mathf.Clamp(Health, 0, MaxHealth);
+            _health -= amount;
+            _health = Mathf.Clamp(_health, 0, _maxHealth);
 
-            if (Health <= 0)
+            if (_health <= 0)
             {
                 OnDeath();
             }
@@ -35,8 +35,8 @@ namespace Game.Health
         {
             if (amount <= 0) return;
 
-            Health += amount;
-            Health = Mathf.Clamp(Health, 0, MaxHealth);
+            _health += amount;
+            _health = Mathf.Clamp(_health, 0, _maxHealth);
         }
 
         public void SetDefence(float defence)

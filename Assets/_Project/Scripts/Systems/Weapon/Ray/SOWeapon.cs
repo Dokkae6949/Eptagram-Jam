@@ -12,7 +12,7 @@ namespace Game.WeaponSystem
 
         [Range(1, 200)] public int damageMultiplier = 1;
 
-        [Range(0.01f, 200)] public int shotsPerSecond = 1;
+        [Range(0.01f, 200)] public float shotsPerSecond = 1;
 
         [Range(0.01f, 200)] public float bulletSpray = 0;
 

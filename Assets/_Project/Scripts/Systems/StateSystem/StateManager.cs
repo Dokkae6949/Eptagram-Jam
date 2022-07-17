@@ -1,6 +1,7 @@
 using Game.Enemies.States;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 namespace Game.StateSystem
@@ -30,7 +31,7 @@ namespace Game.StateSystem
         private bool _hasCalledStart = false;
         private bool _hasCalledEnd = false;
 
-        
+
 
         #endregion
 

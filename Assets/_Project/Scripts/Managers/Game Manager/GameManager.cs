@@ -25,9 +25,18 @@ namespace Game
         [SerializeField]
         private List<WaveData> _waves;
         private int _currentWaveNr;
+        [SerializeField]
+        private MonsterTracker _monsterTracker;
         [Header("WaveInfo References")]
         [SerializeField]
         WIS_WaveInfoScreenManager _waveInfoManager;
+
+        [Header("Canvases")]
+        [SerializeField]
+        private CanvasGroup _winCanvas;
+        [SerializeField]
+        private CanvasGroup _looseCanvas;
+
 
 
 
@@ -37,6 +46,11 @@ namespace Game
 
         private void Start()
         {
+            _winCanvas.alpha = 0f;
+            _winCanvas.interactable = false;
+            _looseCanvas.alpha = 0f;
+            _looseCanvas.interactable = false;
+
             _state = GameState.Beginning;
             _currentWaveNr = 0;
             _inventorySystem.EnableInventorySystem();
@@ -60,6 +74,7 @@ namespace Game
 
             _state = GameState.Wave;
             _spawnController.Spawn(_waves[_currentWaveNr]);
+            _monsterTracker.SpawnNewWave(_waves[_currentWaveNr].GetEnemyNumber());
         }
         public void OnWaveDone()
         {
@@ -78,20 +93,29 @@ namespace Game
 
         public void OnPlayerDead()
         {
+            _playerControls.isActive = false;
+            Cursor.lockState = CursorLockMode.Confined;
             _state = GameState.Lost;
+            _looseCanvas.alpha = 1f;
+            _looseCanvas.interactable = true;
         }
         public void OnGameWon()
         {
+            _playerControls.isActive = false;
+            Cursor.lockState = CursorLockMode.Confined;
             _state = GameState.Win;
+            Debug.Log("You won!");
+            _winCanvas.alpha = 1f;
+            _winCanvas.interactable = true;
         }
 
 
         public void SetCharacteristics(List<int> characteristics)
         {
-            _weaponScript.SetDamageMultiplier(characteristics[0] * 0.5f);
-            _healthSystem.SetDefence(characteristics[1] * 0.5f);
+            _weaponScript.SetDamageMultiplier(Mathf.Clamp(characteristics[0] * 0.5f, 1f, 1000f));
+            _healthSystem.SetDefence(Mathf.Clamp(characteristics[1] * 0.5f, 1f, 1000f));
             _playerControls.SetAccelerationMultiplier(Mathf.Clamp(characteristics[2] * 0.5f, 1f, 1000f));
-            _weaponScript.SetFireRate(characteristics[3] * 0.5f);
+            _weaponScript.SetFireRate(Mathf.Clamp(characteristics[3] * 0.5f, 1f, 1000f));
         }
 
 
