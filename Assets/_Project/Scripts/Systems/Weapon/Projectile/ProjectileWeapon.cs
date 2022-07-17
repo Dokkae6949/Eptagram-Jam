@@ -69,7 +69,7 @@ namespace Game.WeaponSystem
         }
 
 
-        [ReadOnly]
+        
         [SerializeField]
         private bool _isShooting = false;
         public void StartShooting()

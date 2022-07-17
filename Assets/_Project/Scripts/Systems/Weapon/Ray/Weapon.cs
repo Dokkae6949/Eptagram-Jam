@@ -56,7 +56,7 @@ namespace Game.WeaponSystem
             _bulletsPerShot = Mathf.Clamp(value, 1, 100);
         }
 
-        [ReadOnly][SerializeField]
+        [SerializeField]
         private bool _isShooting = false;
         public void StartShooting()
         {
