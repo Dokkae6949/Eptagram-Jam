@@ -11,6 +11,11 @@ namespace Game.Inventory
         [SerializeField] private LayerMask _inventorySlotLayer;
         [SerializeField] private InventorySystem _inventorySystem;
 
+        public override void StateEnd()
+        {
+            
+        }
+
         public override void StateStart()
         {
 

@@ -1,3 +1,4 @@
+using Game.Enemies.States;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,8 @@ namespace Game.StateSystem
 
         [SerializeField] private bool _isActive = true;
         [SerializeField] private State _currentState;
+        [SerializeField] private IdleState _idleState;
+
 
         public void SetIsActive(bool value)
         {
@@ -25,14 +28,20 @@ namespace Game.StateSystem
         public State GetCurrentState() => _currentState;
 
         private bool _hasCalledStart = false;
+        private bool _hasCalledEnd = false;
 
         #endregion
 
-        
+
         private void Update()
         {
             if (_isActive)
                 UpdateStateMachine();
+            else if (!_hasCalledEnd)
+            {
+                _hasCalledEnd = true;
+                _currentState?.StateEnd();
+            }
         }
 
         private void UpdateStateMachine()
@@ -44,12 +53,20 @@ namespace Game.StateSystem
             }
 
             State nextState = _currentState?.StateUpdate();
-
-            if (nextState != _currentState) _hasCalledStart = false;
+            if (nextState != _currentState)
+            {
+                _hasCalledStart = false;
+                _hasCalledEnd = false;
+            }
             if (nextState != null)
             {
                 _currentState = nextState;
             }
+        }
+
+        public void SetIdleState()
+        {
+            _currentState = _idleState;
         }
     }
 }

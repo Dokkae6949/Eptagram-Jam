@@ -4,6 +4,7 @@ using Game.Health;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Game.Inventory;
 
 namespace Game
 {
@@ -12,8 +13,8 @@ namespace Game
         [Header("PleyrReferences")]
         [SerializeField]
         private PlayerControls _playerControls;
-        //[SerializeField]
-        //private DiceOverlay _diceOverlay;
+        [SerializeField]
+        private InventorySystem _inventorySystem;
         [SerializeField]
         private Weapon _weaponScript;
         [SerializeField]
@@ -38,19 +39,25 @@ namespace Game
         {
             _state = GameState.Beginning;
             _currentWaveNr = 0;
+            _inventorySystem.EnableInventorySystem();
+            _playerControls.isActive = false;
+            Cursor.lockState = CursorLockMode.Confined;
         }
         #endregion
 
         #region Public Methods ======================================================================================================================
         public void OnCharacteristicsDistributed()
         {
-            //Hide overlay
+            _playerControls.isActive = true;
+            Cursor.lockState = CursorLockMode.Locked;
             _state = GameState.Countdown;
-            _waveInfoManager.CountDown(10);
+            _waveInfoManager.CountDown(3);
+            _waveInfoManager.ShowWaveNr(_currentWaveNr);
 
         }
         public void OnCountdownOver()
         {
+
             _state = GameState.Wave;
             _spawnController.Spawn(_waves[_currentWaveNr]);
         }
@@ -62,8 +69,9 @@ namespace Game
                 OnGameWon();
                 return;
             }
-            //Open Overlay
-            
+            Cursor.lockState = CursorLockMode.Confined;
+            _playerControls.isActive = false;
+            _inventorySystem.EnableInventorySystem();            
 
 
         }
@@ -77,6 +85,11 @@ namespace Game
             _state = GameState.Win;
         }
 
+
+        public void SetCharacteristics(List<int> characteristics)
+        {
+
+        }
 
 
         #endregion

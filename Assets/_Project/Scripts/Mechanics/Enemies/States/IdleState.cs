@@ -1,14 +1,13 @@
+using Game.StateSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Game.StateSystem;
 
-namespace Game.Inventory
+namespace Game.Enemies.States
 {
-    public class GenerateDiceState : State
+    public class IdleState : State
     {
-        [SerializeField][Range(0, 8)] private int _newDiceAmount;
-        [SerializeField] private InventorySystem _inventorySystem;
+        [SerializeField] private MovementSystem _movement;
 
         public override void StateEnd()
         {
@@ -17,10 +16,12 @@ namespace Game.Inventory
 
         public override void StateStart()
         {
+            _movement.SetInput(Vector2.zero);
         }
         public override State StateUpdate()
         {
-            return _nextState;
+            return this;
         }
+
     }
 }
