@@ -26,14 +26,20 @@ namespace Game.Inventory
 
         public void OnBeginDrag(PointerEventData eventData)
         {
+            if (_dice.isEmpty) return;
+
             _startPosition = _rectTransform.position;
         }
         public void OnDrag(PointerEventData eventData)
         {
+            if (_dice.isEmpty) return;
+
             _rectTransform.anchoredPosition += eventData.delta / _canvas.scaleFactor;
         }
         public void OnEndDrag(PointerEventData eventData)
         {
+            if (_dice.isEmpty) return;
+
             Dice dice = GetClosestDice();
 
             _rectTransform.position = _startPosition;

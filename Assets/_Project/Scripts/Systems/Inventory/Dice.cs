@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace Game.Inventory
 {
-    [RequireComponent(typeof(RectTransform), typeof(RawImage))]
+    [RequireComponent(typeof(RectTransform), typeof(Image))]
     public class Dice : MonoBehaviour
     {
         [SerializeField] private SODice _diceData;
@@ -14,12 +14,12 @@ namespace Game.Inventory
         public int currentFace;
         public bool isEmpty;
 
-        private RawImage _image;
+        private Image _image;
 
         private void Start()
         {
             if (_image == null)
-                _image = GetComponent<RawImage>();
+                _image = GetComponent<Image>();
 
             if (_diceData == null) return;
 
@@ -30,7 +30,7 @@ namespace Game.Inventory
             if (currentFace < 0 || currentFace >= faces.Length) return;
 
             if (faces[currentFace].sprite != null)
-                _image.texture = faces[currentFace].sprite.texture;
+                _image.sprite = faces[currentFace].sprite;
 
             _image.color = faces[currentFace].color;
         }
