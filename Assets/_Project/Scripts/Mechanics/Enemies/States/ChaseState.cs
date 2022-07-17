@@ -9,6 +9,7 @@ namespace Game.Enemies.States
     {
         [SerializeField] private WeaponBasic _weapon;
         [SerializeField] private MovementSystem _movement;
+        [SerializeField] private Animator _animator;
 
         private Transform _player;
 
@@ -20,6 +21,8 @@ namespace Game.Enemies.States
         public override void StateStart()
         {
             _player = GameObject.FindGameObjectWithTag("Player").transform;
+            if (_animator)
+                _animator.SetTrigger("StartWalking");
         }
         public override State StateUpdate()
         {

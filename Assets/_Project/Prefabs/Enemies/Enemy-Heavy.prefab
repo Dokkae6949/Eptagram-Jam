@@ -49,6 +49,7 @@ MonoBehaviour:
   _nextState: {fileID: 3108867415826451108}
   _weapon: {fileID: 8642552292437886814}
   _movement: {fileID: 3108867414851309589}
+  _animator: {fileID: 245434978763312832}
 --- !u!114 &3108867415826451108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,6 +66,7 @@ MonoBehaviour:
   _chaseState: {fileID: 3108867415826451111}
   _weapon: {fileID: 8642552292437886814}
   _requiredLockTime: 1
+  _animator: {fileID: 245434978763312832}
 --- !u!114 &3108867415826451110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,6 +81,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _nextState: {fileID: 3108867415826451108}
   _weapon: {fileID: 8642552292437886814}
+  _animator: {fileID: 245434978763312832}
 --- !u!1 &6562705224391234548
 GameObject:
   m_ObjectHideFlags: 0
@@ -187,15 +190,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -217511505, guid: 22027b4111a8b004782f9326f3dcfa2b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.92, y: 1.92}
+  m_Size: {x: 2.4, y: 2.4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &6562705224823752731
@@ -426,7 +429,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -217511505, guid: 22027b4111a8b004782f9326f3dcfa2b, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -434,6 +437,6 @@ SpriteRenderer:
   m_Size: {x: 1.92, y: 1.92}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0

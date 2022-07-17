@@ -14,6 +14,8 @@ namespace Game.Enemies.States
         [SerializeField] private WeaponBasic _weapon;
         [SerializeField] private float _requiredLockTime;
 
+        [SerializeField] private Animator _animator;
+
         private Transform _player;
         private float _lockTime;
 
@@ -26,6 +28,8 @@ namespace Game.Enemies.States
         {
             _player = GameObject.FindGameObjectWithTag("Player").transform;
             _lockTime = 0f;
+            if (_animator)
+                _animator.SetTrigger("StartAiming");
         }
         public override State StateUpdate()
         {
