@@ -9,7 +9,7 @@ namespace Game
     public class WaveData : ScriptableObject
     {
         public SpawnGroup[] groups;
-        public int GetEnemyNumber(EnemyType type)
+        public int GetEnemyNumber()
         {
             int num = 0;
             foreach (var group in groups)

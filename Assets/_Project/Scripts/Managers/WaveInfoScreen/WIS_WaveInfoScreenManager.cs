@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace Game
@@ -31,12 +32,57 @@ namespace Game
         [SerializeField]
         private Sprite _sprt_hardcore;
 
+        public UnityAction OnCountdownFinished;
+        private bool _countdownEnabled;
+        private float _countdownSeconds;
+        private bool _nextSecond;
+        private float _deltaSeconds;
 
         #region Initialization Methods ==============================================================================================================
 
+        private void Start()
+        {
+            CountDown(10);
+            _timerCanvasGroup.alpha = 0f;
+            _waveCanvasGroup.alpha = 0f;
+        }
+        #endregion
+        #region UpdateMethods =======================================================================================================================
+        private void Update()
+        {
+            if (!_countdownEnabled) return;
 
+            _countdownSeconds -= Time.deltaTime;
+            if (_deltaSeconds - _countdownSeconds >= 1f)
+            {
+                Debug.Log(_countdownSeconds);
+                _deltaSeconds = _countdownSeconds;
+                ShowTimerDigit(Mathf.RoundToInt(_countdownSeconds));
+
+            }
+            if (_countdownSeconds <=0f)
+            {
+                _countdownEnabled = false;
+                OnCountdownFinished?.Invoke();
+            }
+
+            
+
+
+
+
+
+        }
         #endregion
         #region PublicMethods =======================================================================================================================
+
+        public void CountDown(int seconds)
+        {
+            _countdownEnabled = true;
+            _nextSecond = true;
+            _countdownSeconds = seconds;
+            _deltaSeconds = _countdownSeconds+1f;
+        }
         public void SetWaveDifficultyInfo(List<int> monstersAmount)
         {
             int sum = 0;
