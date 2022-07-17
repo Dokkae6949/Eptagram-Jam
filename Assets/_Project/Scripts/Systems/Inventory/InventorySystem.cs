@@ -8,6 +8,8 @@ namespace Game.Inventory
 {
     public class InventorySystem : MonoBehaviour
     {
+        [SerializeField]
+        private CanvasGroup _canvasGroup;
         public Dice[] inventory;
         public SODice[] diceData;
         public SODice emptyDice;
@@ -17,6 +19,44 @@ namespace Game.Inventory
 
         [SerializeField] private int _maxDice = 8;
 
+        private void Awake()
+        {
+            _canvasGroup.alpha = 0f;
+            ResetInventory();
+        }
+
+        #region CanvasControl =======================================================================================================================
+
+        public void EnableInventorySystem()
+        {
+            ResetAbilityDice();
+            _canvasGroup.alpha = 1f;
+            _canvasGroup.interactable = true;
+        }
+        public void ApproveSelection()
+        {
+            _canvasGroup.alpha = 0f;
+            _canvasGroup.interactable = false;
+            List<int> newCharacteristics = new List<int>();
+            
+            for (int i = 0; i < 4; i++)
+            {
+
+                if(inventory[i].isEmpty)
+                {
+                    newCharacteristics.Add(1);
+                }
+                else
+                {
+                    newCharacteristics.Add(inventory[i].currentFace);
+                }
+                
+            }
+            GameManager.Instance.SetCharacteristics(newCharacteristics);
+            GameManager.Instance.OnCharacteristicsDistributed();
+
+        }
+        #endregion
 
         public void SwapDice(int a, int b)
         {
@@ -51,13 +91,7 @@ namespace Game.Inventory
         public void AddDice(int amount)
         {
             if (inventory.Length < 4) return;
-            if (GetDiceInInventory() >= _maxDice)
-            {   
-                _rollButton.interactable = false;
-                _doneButton.interactable = true;
 
-                return;
-            }
 
             for (int i = 4; i < inventory.Length && amount > 0; i++)
             {
@@ -67,6 +101,14 @@ namespace Game.Inventory
                 inventory[i].currentFace = Random.Range(0, inventory[i].faces.Length);
                 amount--;
                 i = 3;
+            }
+            if (GetDiceInInventory() > _maxDice - 1)
+            {
+                Debug.Log(GetDiceInInventory());
+                _rollButton.interactable = false;
+                _doneButton.interactable = true;
+
+                return;
             }
         }
 

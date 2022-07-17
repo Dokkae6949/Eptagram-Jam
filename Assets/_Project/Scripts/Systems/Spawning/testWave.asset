@@ -16,13 +16,15 @@ MonoBehaviour:
   - start: 0
     end: 10
     spawners:
-    - G1
-    - G2
-    enemy: {fileID: 2210926265709750289, guid: 9091ca9dcbe9c324184b4501cf67685d, type: 3}
+    - 1
+    - 2
+    - 3
+    - 4
+    enemy: {fileID: 6689796806804848618, guid: 7e09dd46cde262c4e95fd9912d9ee86d, type: 3}
     num: 10
   - start: 2
     end: 5
     spawners:
-    - G1
+    - 4
     enemy: {fileID: 8086076588324555882, guid: 422e8eba078f0714fa9039dd09632fa9, type: 3}
     num: 10

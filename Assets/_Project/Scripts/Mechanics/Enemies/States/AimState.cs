@@ -16,7 +16,11 @@ namespace Game.Enemies.States
 
         private Transform _player;
         private float _lockTime;
-        
+
+        public override void StateEnd()
+        {
+            
+        }
 
         public override void StateStart()
         {

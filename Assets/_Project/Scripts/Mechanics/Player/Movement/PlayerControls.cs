@@ -56,7 +56,7 @@ namespace Game.Player
             _rigidbody = GetComponent<Rigidbody>();
             _weapon = GetComponent<Weapon>();
 
-            Cursor.lockState = CursorLockMode.Locked;
+            //Cursor.lockState = CursorLockMode.Locked;
         }
         private void Update()
         {
@@ -109,5 +109,7 @@ namespace Game.Player
             _mouseInput.x = Input.GetAxisRaw("Mouse X") * _mouseSensitivity.x;
             _mouseInput.y = Input.GetAxisRaw("Mouse Y") * _mouseSensitivity.y;
         }
+
+
     }
 }

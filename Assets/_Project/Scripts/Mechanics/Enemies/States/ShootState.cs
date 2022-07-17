@@ -10,6 +10,11 @@ namespace Game.Enemies.States
     {
         [SerializeField] private WeaponBasic _weapon;
 
+        public override void StateEnd()
+        {
+            
+        }
+
         public override void StateStart()
         {
             _weapon.Shoot();

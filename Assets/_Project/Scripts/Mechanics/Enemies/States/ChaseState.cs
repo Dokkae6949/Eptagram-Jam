@@ -12,6 +12,10 @@ namespace Game.Enemies.States
 
         private Transform _player;
 
+        public override void StateEnd()
+        {
+            _movement.SetInput(Vector2.zero);
+        }
 
         public override void StateStart()
         {
@@ -19,6 +23,7 @@ namespace Game.Enemies.States
         }
         public override State StateUpdate()
         {
+
             Move();
             //Debug.Log("R " + Helper.InRange(transform.position, _player.position, _weapon.GetMaxBulletRange()));
             //Debug.Log("C " + Helper.CanSee(transform.position, _player.position, _weapon.GetMaxBulletRange(), "Player"));
@@ -36,5 +41,6 @@ namespace Game.Enemies.States
                 _player.position.z - transform.position.z);
             _movement.SetInput(moveDir.normalized);
         }
+
     }
 }

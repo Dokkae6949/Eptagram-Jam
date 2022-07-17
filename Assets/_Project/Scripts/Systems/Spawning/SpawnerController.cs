@@ -10,7 +10,6 @@ namespace Game
         [Header("References")]
         [SerializeField]
         MonsterTracker _monsterTracker;
-        [SerializeField]GameObject spawnedSpawnerPre;
         public static Dictionary<string, Vector3> spawnMap;
         public static Dictionary<string, int> spawnNums;
         public Dictionary<EnemyType, GameObject> enemyMap;

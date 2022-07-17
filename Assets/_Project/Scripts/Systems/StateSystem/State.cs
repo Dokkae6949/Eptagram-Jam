@@ -10,5 +10,6 @@ namespace Game.StateSystem
 
         public abstract void StateStart();
         public abstract State StateUpdate();
+        public abstract void StateEnd();
     }
 }

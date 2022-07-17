@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -41,7 +42,6 @@ namespace Game
 
         private void Start()
         {
-            CountDown(10);
             _timerCanvasGroup.alpha = 0f;
             _waveCanvasGroup.alpha = 0f;
         }
@@ -75,7 +75,12 @@ namespace Game
         }
         #endregion
         #region PublicMethods =======================================================================================================================
+        public void ShowWaveNr(int nr)
+        {
+            ShowWaveInfo(nr);
+            StartCoroutine(CallbackInSeconds(HideWaveInfo, 5f));
 
+        }
         public void CountDown(int seconds)
         {
             _countdownEnabled = true;
@@ -154,6 +159,12 @@ namespace Game
                 }
                 yield return new WaitForEndOfFrame();
             }
+        }
+
+        private IEnumerator CallbackInSeconds(Action Callback, float seconds)
+        {
+            yield return new WaitForSeconds(seconds);
+            Callback();
         }
         #endregion
 

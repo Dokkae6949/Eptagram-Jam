@@ -7,6 +7,11 @@ namespace Game.Inventory
 {
     public class IdleState : State
     {
+        public override void StateEnd()
+        {
+            
+        }
+
         public override void StateStart()
         {
             

@@ -19,10 +19,10 @@ namespace Game.WeaponSystem
             _damage = Mathf.Clamp(value, 0, 1000);
         }
 
-        [SerializeField][Range(1, 200)] private int _damageMultiplier = 1;
-        public void SetDamageMultiplier(int value)
+        [SerializeField][Range(1, 200)] private float _damageMultiplier = 1;
+        public void SetDamageMultiplier(float value)
         {
-            _damageMultiplier = Mathf.Clamp(value, 1, 200);
+            _damageMultiplier = value;
         }
 
         [SerializeField][Range(0.01f, 200)] private float _shotsPerSecond = 1;
@@ -126,7 +126,7 @@ namespace Game.WeaponSystem
 
             if (damageable == null) return;
 
-            damageable.DealDamage(_damage * _damageMultiplier, _origin);
+            damageable.DealDamage((int)(_damage * _damageMultiplier), _origin);
 
             BulletHit bulletHit;
             bulletHit.hitPosition = hit.point;
