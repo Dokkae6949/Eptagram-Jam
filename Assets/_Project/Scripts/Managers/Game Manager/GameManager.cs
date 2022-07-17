@@ -55,7 +55,7 @@ namespace Game
             _currentWaveNr = 0;
             _inventorySystem.EnableInventorySystem();
             _playerControls.isActive = false;
-            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.lockState = CursorLockMode.None;
         }
         #endregion
 
@@ -84,7 +84,7 @@ namespace Game
                 OnGameWon();
                 return;
             }
-            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.lockState = CursorLockMode.None;
             _playerControls.isActive = false;
             _inventorySystem.EnableInventorySystem();            
 
@@ -94,7 +94,7 @@ namespace Game
         public void OnPlayerDead()
         {
             _playerControls.isActive = false;
-            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.lockState = CursorLockMode.None;
             _state = GameState.Lost;
             _looseCanvas.alpha = 1f;
             _looseCanvas.interactable = true;
@@ -102,7 +102,7 @@ namespace Game
         public void OnGameWon()
         {
             _playerControls.isActive = false;
-            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.lockState = CursorLockMode.None;
             _state = GameState.Win;
             Debug.Log("You won!");
             _winCanvas.alpha = 1f;
